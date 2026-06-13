@@ -1,0 +1,32 @@
+module(
+    name = "gz-gui",
+)
+
+bazel_dep(name = "protobuf", version = "33.4")
+bazel_dep(name = "rules_license", version = "1.0.0")
+bazel_dep(name = "rules_qt", version = "0.0.6")
+bazel_dep(name = "rules_cc", version = "0.2.18")
+bazel_dep(name = "rules_gazebo", version = "0.0.6")
+bazel_dep(name = "platforms", version = "0.0.10")
+bazel_dep(name = "tinyxml2", version = "10.0.0")
+bazel_dep(name = "libx11", version = "1.8.12.bcr.5")
+bazel_dep(name = "libxrandr", version = "1.5.4")
+bazel_dep(name = "opengl-registry", version = "0.0.0-20250707")
+bazel_dep(name = "gz-utils", version = "4.0.0")
+bazel_dep(name = "gz-math", version = "9.0.0")
+bazel_dep(name = "gz-common", version = "7.1.1")
+bazel_dep(name = "gz-plugin", version = "4.0.0")
+bazel_dep(name = "gz-transport", version = "15.0.2")
+bazel_dep(name = "gz-rendering", version = "10.0.1")
+bazel_dep(name = "gz-msgs", version = "12.0.1")
+
+qt = use_extension("@rules_qt//extension:qt.bzl", "fetch")
+qt.install(
+    name = "qt_linux_x86_64",
+    build_file = "@rules_qt//extension:qt/6.8.3/linux_x86_64.BUILD",
+    os = "linux",
+    version = "6.8.3",
+)
+use_repo(qt, "qt_linux_x86_64")
+
+register_toolchains("@rules_qt//tools:all")
