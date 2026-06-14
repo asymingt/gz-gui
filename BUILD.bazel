@@ -114,6 +114,28 @@ public_headers = glob([
 ]
 
 cc_library(
+    name = "gz-gui-headers",
+    hdrs = public_headers,
+    includes = ["include"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "@gz-common",
+        "@gz-math",
+        "@gz-msgs",
+        "@gz-plugin//:loader",
+        "@gz-transport",
+        "@tinyxml2",
+        "@rules_qt//:qt_core",
+        "@rules_qt//:qt_gui",
+        "@rules_qt//:qt_widgets",
+        "@rules_qt//:qt_qml",
+        "@rules_qt//:qt_quick",
+        "@rules_qt//:qt_quick_controls2",
+        "@qt_linux_x86_64//:qt_hdrs",
+    ],
+)
+
+cc_library(
     name = "gz-gui",
     srcs = sources + moc_files + [":resources_rcc"],
     hdrs = public_headers,
@@ -260,5 +282,18 @@ gz_gui_plugin(
     ],
 )
 
-
-
+gz_gui_plugin(
+    name = "CameraTracking",
+    srcs = [
+        "src/plugins/camera_tracking/CameraTracking.cc",
+    ],
+    qrc = "src/plugins/camera_tracking/CameraTracking.qrc",
+    qml = ["src/plugins/camera_tracking/CameraTracking.qml"],
+    moc_headers = [
+        "src/plugins/camera_tracking/CameraTracking.hh",
+    ],
+    deps = [
+        "@gz-common//profiler",
+        "@gz-rendering",
+    ],
+)
