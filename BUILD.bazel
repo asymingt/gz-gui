@@ -165,6 +165,7 @@ cc_library(
     name = "gz-gui",
     srcs = sources + moc_files + [":resources_rcc"],
     hdrs = public_headers,
+    alwayslink = True,
     copts = [
         "-fPIC",
     ],

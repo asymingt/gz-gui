@@ -176,3 +176,8 @@ gz::common::KeyEvent convert(const QKeyEvent &_e)
   return event;
 }
 }  // namespace gz::gui
+
+std::string QByteArray::toStdString() const
+{
+  return std::string(constData(), size());
+}
