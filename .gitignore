@@ -11,3 +11,7 @@ build_*
 
 # git mergetool generated files
 *.orig
+
+# Bazel generated files
+bazel-*
+MODULE.bazel.lock

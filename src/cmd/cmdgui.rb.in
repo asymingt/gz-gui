@@ -146,6 +146,9 @@ class Cmd
     conf_version = LIBRARY_VERSION
 
     begin
+      if defined?(Fiddle)
+        Fiddle.dlopen(plugin, Fiddle::RTLD_GLOBAL) rescue nil
+      end
       Importer.dlload plugin
     rescue DLError
       puts "Library error: [#{plugin}] not found."

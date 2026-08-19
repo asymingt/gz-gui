@@ -865,7 +865,12 @@ std::vector<std::pair<std::string, std::vector<std::string>>>
 
       if (plugin.find(SHARED_LIBRARY_PREFIX) == 0 &&
           plugin.rfind(SHARED_LIBRARY_SUFFIX) == suffixPos)
-        ps.push_back(plugin);
+      {
+        if (plugin != "libgz-gui.so" && plugin != "libgz-gui-shared.so")
+        {
+          ps.push_back(plugin);
+        }
+      }
     }
 
     plugins.emplace_back(path, ps);
